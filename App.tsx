@@ -1,45 +1,47 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, {useState} from "react";
+import {View,Text, Image, TouchableOpacity} from 'react-native'
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+const user = {
+  name: 'Jane Doe',
+  bio: 'Frontend developer who loves React and coffee ☕️',
+  image: 'https://do6gp1uxl3luu.cloudfront.net/question-webp/dummyUser.jpg'
+};
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+const App = () =>{
 
-  return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
-  );
-}
+  const [show,setShow] = useState(false)
 
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
+  const toggleBio = () =>{
+    setShow(!show)
+  }
 
   return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
+    <View style={{ flex:1,  alignItems:'center', backgroundColor:'#000' }} >
+
+      <View style={{ flex:8, justifyContent:'center' }} >
+
+    <Image source={{uri: user.image}} style={{ width:100, height:100, borderRadius:100 }} resizeMode='contain'  />
+
+      <Text style={{ marginVertical:20, color:'#fff', fontSize:20, fontWeight:'bold',  }} >{user.name}</Text>
+
+
+    <TouchableOpacity 
+    onPress={toggleBio}
+    style={{ padding:20, backgroundColor:'#fff', borderRadius:10 }} >
+      <Text>Show Bio</Text>
+    </TouchableOpacity>
+
     </View>
-  );
+
+    <View style={{ flex:4, justifyContent:'flex-start', alignItems:'flex-start' }} >
+    {show &&
+    <Text style={{ marginVertical:20, color:'#fff', fontSize:20, fontWeight:'bold',  }}>{user.bio}</Text>
+  }
+    </View>
+    
+
+    </View>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;
+export default App
