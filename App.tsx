@@ -28,7 +28,7 @@ const App = () =>{
     <TouchableOpacity 
     onPress={toggleBio}
     style={{ padding:20, backgroundColor:'#fff', borderRadius:10 }} >
-      <Text>Show Bio</Text>
+      <Text>Show Biosss</Text>
     </TouchableOpacity>
 
     </View>
